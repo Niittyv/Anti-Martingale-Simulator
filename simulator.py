@@ -7,7 +7,7 @@ enable_trades_csv = False
 population = [0, 1]
 weights = []
 
-anti_martingale = input("enable anti-martingale? (y/n)" )
+anti_martingale = input("enable anti-martingale? (y/n) " )
 
 if anti_martingale.lower() == "y":
     enable_anti_martingale = True
@@ -24,10 +24,12 @@ if enable_anti_martingale:
 n_cycles = int(input("how many test cycles? "))
 n_trades = int(input("how many trades per test cycle? "))
 trades_csv = input("enable gathering of individual test cycles as csv-files? (y/n) ")
-result_csv_name = input("name for result csv? ")
 
 if trades_csv.lower() == "y":
     enable_trades_csv = True
+    trades_csv_name = input("name for test cycle csv-files? ")
+
+result_csv_name = input("name for result csv? ")
 
 lossrate = 1 - winrate
 weights.append(lossrate)
@@ -36,7 +38,7 @@ weights.append(winrate)
 data_results= {
     "end_balance" : [],
     "max_drawdown" : [],
-    "chicken_dinners" : [],
+    "chicken_dinners/max_win_streak" : [],
     "max_loss_streak" : [],
     "wins" : [],
     "losses" : [],
@@ -70,7 +72,7 @@ while n_cycles > 0:
     if enable_trades_csv:
         
         increment += 1
-        filename = "tradescsv" + str(increment) + ".csv"
+        filename = trades_csv_name + str(increment) + ".csv"
     
         data_trades= {
             "balance" : [],
@@ -78,10 +80,9 @@ while n_cycles > 0:
             "next_risk" : [],
             "win_amount" : [],
             "loss_amount" : [],
-            "chicken_dinners" : [],
             "max_drawdown" : [], 
             "winrate" : [],
-            "win_streak" : [],
+            "chicken_dinners/win_streak" : [],
             "loss_streak" : []
         }
         
@@ -110,8 +111,11 @@ while n_cycles > 0:
             if enable_trades_csv:
                 winrate = wins / total_trades
                 winrate = winrate * 100
-                loss_trade = [round(balance), "loss", initial_risk, 0, loss_amount, chicken_dinners, max_drawdown, round(winrate, 1), 0, loss_streak]
+                loss_trade = [round(balance), "loss", initial_risk, 0, round(loss_amount), round(max_drawdown), round(winrate, 1), chicken_dinners, loss_streak]
                 trades_csv.loc[len(trades_csv)] = loss_trade
+                
+            if balance <= 0:
+                break
         
         elif trade == 1:
             wins += 1
@@ -119,6 +123,7 @@ while n_cycles > 0:
             loss_streak = 0
             win_amount = current_risk * balance
             balance = balance + win_amount
+            
             if enable_anti_martingale:
                 if win_streak == hops:
                     current_risk = initial_risk
@@ -126,15 +131,26 @@ while n_cycles > 0:
                     win_streak = 0
                 elif win_streak > to_skip:
                     current_risk = current_risk * multiplier
+            else:
+                if win_streak > chicken_dinners:
+                    chicken_dinners = win_streak
             
             if enable_trades_csv:
                 winrate = wins / total_trades
                 winrate = winrate * 100
-                win_trade = [round(balance), "win", current_risk, win_amount, 0, chicken_dinners, max_drawdown, round(winrate, 1), win_streak, 0]
+                win_trade = [round(balance), "win", current_risk, round(win_amount), 0, round(max_drawdown), round(winrate, 1), chicken_dinners, 0]
                 trades_csv.loc[len(trades_csv)] = win_trade
-    
     
     if enable_trades_csv:        
         trades_csv.to_csv(filename)
     
-        
+    losses = total_trades - wins
+    
+    winrate = wins / total_trades
+    winrate = winrate * 100
+    
+    new_cycle = [round(balance), round(max_drawdown), chicken_dinners, max_loss_streak, wins, losses, round(winrate, 1)]
+    result_csv.loc[len(result_csv)] = new_cycle
+
+filename = result_csv_name + ".csv"
+result_csv.to_csv(filename)
