@@ -57,9 +57,9 @@ while n_cycles > 0:
     trades = choices(population, weights, k=n_trades)
     
     balance = start_balance
+    pot = balance * initial_risk
     win_streak = 0
     loss_streak = 0
-    current_risk = initial_risk
     
     chicken_dinners = 0
     
@@ -77,7 +77,6 @@ while n_cycles > 0:
         data_trades= {
             "balance" : [],
             "result" : [],
-            "next_risk" : [],
             "win_amount" : [],
             "loss_amount" : [],
             "max_drawdown" : [], 
@@ -93,7 +92,8 @@ while n_cycles > 0:
         total_trades += 1
         
         if trade == 0:
-            loss_amount = current_risk * balance
+            
+            loss_amount = pot
             balance = balance - loss_amount
             
             if balance < start_balance:
@@ -102,7 +102,8 @@ while n_cycles > 0:
                     max_drawdown = drawdown
                     
             #resets
-            current_risk = initial_risk
+            if enable_anti_martingale:
+                pot = balance * initial_risk
             win_streak = 0
             loss_streak += 1
             if loss_streak > max_loss_streak:
@@ -111,26 +112,27 @@ while n_cycles > 0:
             if enable_trades_csv:
                 winrate = wins / total_trades
                 winrate = winrate * 100
-                loss_trade = [round(balance), "loss", initial_risk, 0, round(loss_amount), round(max_drawdown), round(winrate, 1), chicken_dinners, loss_streak]
+                loss_trade = [round(balance), "loss", 0, round(loss_amount), round(max_drawdown), round(winrate, 1), chicken_dinners, loss_streak]
                 trades_csv.loc[len(trades_csv)] = loss_trade
                 
             if balance <= 0:
                 break
         
         elif trade == 1:
+            
             wins += 1
             win_streak += 1
             loss_streak = 0
-            win_amount = current_risk * balance
+            win_amount = pot
             balance = balance + win_amount
             
             if enable_anti_martingale:
                 if win_streak == hops:
-                    current_risk = initial_risk
+                    pot = balance * initial_risk
                     chicken_dinners += 1
                     win_streak = 0
                 elif win_streak > to_skip:
-                    current_risk = current_risk * multiplier
+                    pot = pot * multiplier
             else:
                 if win_streak > chicken_dinners:
                     chicken_dinners = win_streak
@@ -138,7 +140,7 @@ while n_cycles > 0:
             if enable_trades_csv:
                 winrate = wins / total_trades
                 winrate = winrate * 100
-                win_trade = [round(balance), "win", current_risk, round(win_amount), 0, round(max_drawdown), round(winrate, 1), chicken_dinners, 0]
+                win_trade = [round(balance), "win", round(win_amount), 0, round(max_drawdown), round(winrate, 1), chicken_dinners, 0]
                 trades_csv.loc[len(trades_csv)] = win_trade
     
     if enable_trades_csv:        
