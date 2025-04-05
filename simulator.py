@@ -42,11 +42,11 @@ while trades_csv not in ["y", "n"]:
 
 if trades_csv == "y":
     enable_trades_csv = True
-    trades_csv_name = input("name for test cycle csv-files? (leave blank for default naming) ")
+    trades_csv_name = input("name for test cycle csv-files? (leave blank for 'test_cycle#.csv') ")
     if not trades_csv_name.strip():
         trades_csv_name = "test_cycle"
         
-result_csv_name = input("name for result csv? (leave blank for default naming) ")
+result_csv_name = input("name for result csv? (leave blank for 'results.csv') ")
 if not result_csv_name.strip():
     result_csv_name = "results"
 
@@ -57,7 +57,10 @@ weights.append(winrate)
 
 data_results= {
     "end_balance" : [],
+    "pnl" : [],
+    "pnl%" : [],
     "max_drawdown" : [],
+    "max_drawdown%" : [],
     "chicken_dinners/max_win_streak" : [],
     "max_loss_streak" : [],
     "wins" : [],
@@ -171,7 +174,12 @@ while n_cycles > 0:
     winrate = wins / total_trades
     winrate = winrate * 100
     
-    new_cycle = [round(balance), round(max_drawdown), chicken_dinners, max_loss_streak, wins, losses, round(winrate, 1)]
+    gain = balance - start_balance
+    pnl = (gain / start_balance) * 100
+    
+    max_dd_percentage = (max_drawdown / start_balance) * 100
+    
+    new_cycle = [round(balance), round(gain, 1), round(pnl, 1), round(max_drawdown), round(max_dd_percentage, 1), chicken_dinners, max_loss_streak, wins, losses, round(winrate, 1)]
     result_csv.loc[len(result_csv)] = new_cycle
 
 filename = result_csv_name + ".csv"
