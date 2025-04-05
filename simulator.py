@@ -7,29 +7,49 @@ enable_trades_csv = False
 population = [0, 1]
 weights = []
 
-anti_martingale = input("enable anti-martingale? (y/n) " )
-
-if anti_martingale.lower() == "y":
+anti_martingale = ""
+while anti_martingale not in ["y", "n"]:
+    anti_martingale = input("enable anti-martingale? (y/n) " ).lower()
+    
+if anti_martingale == "y":
     enable_anti_martingale = True
     
-winrate = float(input("give winrate as decimal "))
+winrate = float(input("give winrate (eg. 50 for 50%) "))
+winrate = winrate / 100
+
 start_balance = float(input("give starting balance "))
-initial_risk = float(input("give initial risk "))
+initial_risk = float(input("give initial risk percentage (eg. 10 for 10%) "))
+initial_risk = initial_risk / 100
 
 if enable_anti_martingale:
+    
     hops = int(input("how many wins until reset? "))
-    to_skip = int(input("how many wins to skip before compounding takes effect? "))
+    
+    to_skip = input("how many wins to skip before compounding takes effect? (leave blank for no skips) ")
+    if not to_skip.strip():
+        to_skip = int(0)
+    else:
+        to_skip = int(to_skip)
+        
     multiplier = float(input("give risk multiplier after winning trade "))
 
 n_cycles = int(input("how many test cycles? "))
 n_trades = int(input("how many trades per test cycle? "))
-trades_csv = input("enable gathering of individual test cycles as csv-files? (y/n) ")
 
-if trades_csv.lower() == "y":
+trades_csv = ""
+while trades_csv not in ["y", "n"]:
+    trades_csv = input("enable gathering of individual test cycles as csv-files? (y/n) ").lower()
+
+if trades_csv == "y":
     enable_trades_csv = True
-    trades_csv_name = input("name for test cycle csv-files? ")
+    trades_csv_name = input("name for test cycle csv-files? (leave blank for default naming) ")
+    if not trades_csv_name.strip():
+        trades_csv_name = "test_cycle"
+        
+result_csv_name = input("name for result csv? (leave blank for default naming) ")
+if not result_csv_name.strip():
+    result_csv_name = "results"
 
-result_csv_name = input("name for result csv? ")
 
 lossrate = 1 - winrate
 weights.append(lossrate)
