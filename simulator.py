@@ -1,6 +1,7 @@
 from random import choices
 import pandas as pd
 
+
 enable_anti_martingale = False
 enable_trades_csv = False
 
@@ -55,6 +56,8 @@ lossrate = 1 - winrate
 weights.append(lossrate)
 weights.append(winrate)
 
+#csv-formats
+
 data_results= {
     "end_balance" : [],
     "pnl" : [],
@@ -62,14 +65,28 @@ data_results= {
     "max_drawdown" : [],
     "max_drawdown%" : [],
     "chicken_dinners/max_win_streak" : [],
+    "runner_ups" : [],
     "max_loss_streak" : [],
     "wins" : [],
     "losses" : [],
     "winrate" : []
 }
 
+if enable_trades_csv:
+    data_trades= {
+                "balance" : [],
+                "result" : [],
+                "win_amount" : [],
+                "loss_amount" : [],
+                "max_drawdown" : [], 
+                "winrate" : [],
+                "chicken_dinners/win_streak" : [],
+                "loss_streak" : []
+    }
+
 result_csv = pd.DataFrame(data=data_results)
 
+#enumarate generated test cycle csv's
 if enable_trades_csv:
     increment = 0
 
@@ -85,6 +102,7 @@ while n_cycles > 0:
     loss_streak = 0
     
     chicken_dinners = 0
+    runner_ups = 0
     
     max_loss_streak = 0
     max_drawdown = 0
@@ -96,17 +114,6 @@ while n_cycles > 0:
         
         increment += 1
         filename = trades_csv_name + str(increment) + ".csv"
-    
-        data_trades= {
-            "balance" : [],
-            "result" : [],
-            "win_amount" : [],
-            "loss_amount" : [],
-            "max_drawdown" : [], 
-            "winrate" : [],
-            "chicken_dinners/win_streak" : [],
-            "loss_streak" : []
-        }
         
         trades_csv = pd.DataFrame(data=data_trades)
     
@@ -127,6 +134,8 @@ while n_cycles > 0:
             #resets
             if enable_anti_martingale:
                 pot = balance * initial_risk
+                if (hops - win_streak) == 1:
+                    runner_ups += 1
             win_streak = 0
             loss_streak += 1
             if loss_streak > max_loss_streak:
@@ -179,7 +188,7 @@ while n_cycles > 0:
     
     max_dd_percentage = (max_drawdown / start_balance) * 100
     
-    new_cycle = [round(balance), round(gain, 1), round(pnl, 1), round(max_drawdown), round(max_dd_percentage, 1), chicken_dinners, max_loss_streak, wins, losses, round(winrate, 1)]
+    new_cycle = [round(balance), round(gain, 1), round(pnl, 1), round(max_drawdown), round(max_dd_percentage, 1), chicken_dinners, runner_ups, max_loss_streak, wins, losses, round(winrate, 1)]
     result_csv.loc[len(result_csv)] = new_cycle
 
 filename = result_csv_name + ".csv"
