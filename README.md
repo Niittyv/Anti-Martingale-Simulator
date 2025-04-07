@@ -6,10 +6,10 @@ The simulator comes with analytics tool to gain deeper insight of your trading s
 
 The simulator is specifically designed to test the risk parameters of anti-martingale systems but regular risk management systems without compounding can also be tested.
 
-Some common terms that you will encounter using the simulator:
+###Some common terms that you will encounter using the simulator:
 
 <strong>hops</strong>: how many wins in a row until compounding ends and the risk percentage is set to default.
 
-chicken dinner: when predetermined winstreak (hops) is reached, the compounded sum of profit is collected to the balance and the risk percentage for upcoming trades is set to default.
+<strong>chicken dinner</strong>: when predetermined winstreak (hops) is reached, the compounded sum of profit is collected to the balance and the risk percentage for upcoming trades is set to default.
 
-runner up (hops-1): when the winstreak ends right before chicken dinner is achieved.
+<strong>runner up</strong> (hops-1): when the winstreak ends right before chicken dinner is achieved.
