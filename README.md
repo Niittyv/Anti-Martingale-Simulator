@@ -8,7 +8,7 @@ The simulator is specifically designed to test the risk parameters of anti-marti
 
 Some common terms that you will encounter using the simulator:
 
-hops: how many wins in a row until compounding ends and the risk percentage is set to default.
+<strong>hops</strong>: how many wins in a row until compounding ends and the risk percentage is set to default.
 
 chicken dinner: when predetermined winstreak (hops) is reached, the compounded sum of profit is collected to the balance and the risk percentage for upcoming trades is set to default.
 
