@@ -6,7 +6,7 @@ The simulator comes with analytics tool to gain deeper insight of your trading s
 
 The simulator is specifically designed to test the risk parameters of anti-martingale systems but regular risk management systems without compounding can also be tested.
 
-###Some common terms that you will encounter using the simulator:
+### Some common terms that you will encounter using the simulator:
 
 <strong>hops</strong>: how many wins in a row until compounding ends and the risk percentage is set to default.
 
