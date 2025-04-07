@@ -10,6 +10,6 @@ The simulator is specifically designed to test the risk parameters of anti-marti
 
 <strong>hops</strong>: how many wins in a row until compounding ends and the risk percentage is set to default.
 
-<strong>chicken dinner</strong>: when predetermined winstreak (hops) is reached, the compounded sum of profit is collected to the balance and the risk percentage for upcoming trades is set to default.
+<strong>chicken dinner / bankrun</strong>: when predetermined winstreak (hops) is reached, the compounded sum of profit is collected to the balance and the risk percentage for upcoming trades is set to default.
 
 <strong>runner up</strong> (hops-1): when the winstreak ends right before chicken dinner is achieved.
