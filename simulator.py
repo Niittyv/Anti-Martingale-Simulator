@@ -109,6 +109,11 @@ metadata_csv = pd.DataFrame(data=metadata)
 result_csv = pd.DataFrame(data=data_results)
 
 #create metadata file
+if not enable_anti_martingale:
+    hops = 0
+    to_skip = 0
+    multiplier = 1
+    
 metadata_input = [enable_anti_martingale, winrate, start_balance, initial_risk, hops, to_skip, multiplier, n_cycles, n_trades]
 metadata_csv.loc[len(metadata_csv)] = metadata_input
 
