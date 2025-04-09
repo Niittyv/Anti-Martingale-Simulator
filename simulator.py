@@ -33,7 +33,11 @@ if enable_anti_martingale:
     else:
         to_skip = int(to_skip)
         
-    multiplier = float(input("give risk multiplier after winning trade "))
+    multiplier = input("give risk multiplier after winning trade (leave blank for default value 2) ")
+    if not multiplier.strip():
+        multiplier = float(2)
+    else:
+        multiplier = float(multiplier)
 
 n_cycles = int(input("how many test cycles? "))
 n_trades = int(input("how many trades per test cycle? "))
