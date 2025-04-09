@@ -14,7 +14,7 @@ The simulator is specifically designed to test the risk parameters of anti-marti
 
 <strong>runner up</strong> (hops-1): when the winstreak ends right before chicken dinner is achieved.
 
-### Example congiguration
+### Example configuration
 
 enable anti-martingale? (y/n) - y
 - if enabled, the risk will be compounded after each successive winning trade. If disabled, the risk will stay constant.
