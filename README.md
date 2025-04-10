@@ -2,7 +2,7 @@
 
 With this simulator you can test your trading system's risk parameters with arbitary number of randomly generated trades and test cycles. The result statistics of test cycles are aggregated into a csv-file. The user has the option to output the list of trades from test cycles into csv-files.
 
-The simulator comes with analytics tool to help you gain deeper insight of your trading system's risk parameters.
+The simulator comes with data analytics tool to help you gain deeper insight of your trading system's risk parameters.
 
 The simulator is specifically designed to test the risk parameters of anti-martingale systems but regular risk management systems without compounding can also be tested.
 
