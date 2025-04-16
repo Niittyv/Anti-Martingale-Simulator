@@ -2,11 +2,14 @@
 
 With this simulator you can test your trading system's risk parameters with arbitary number of randomly generated trades and test cycles. The result statistics of test cycles are aggregated into a csv-file. The user has the option to output the list of trades from test cycles into csv-files.
 
+The simulator is specifically designed to test the risk parameters of anti-martingale systems but regular risk management systems without compounding can also be tested.
+
+### Data analytics
+
 The simulator comes with data analytics tools to help you gain deeper insight of your trading system's risk parameters. The program generates a simple HTML analysis report but you can use the analysis.ipynb notebook for more indepth analysis. Use this link to see the analysis.ipynb notebook with outputs:
 
 https://nbviewer.org/github/Niittyv/Anti-Martingale-Simulator/blob/main/analysis.ipynb
 
-The simulator is specifically designed to test the risk parameters of anti-martingale systems but regular risk management systems without compounding can also be tested.
 
 ### Some common terms that you will encounter using the simulator:
 
