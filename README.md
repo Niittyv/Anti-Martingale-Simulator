@@ -58,4 +58,4 @@ name for result csv? (leave blank for 'results.csv') -
 - leave blank for default naming
 
 want to generate html-report? (y/n) - y
-- generates an analysis of result.csv in a HTML-file format
+- generates an analysis report of result.csv in a HTML-file format
