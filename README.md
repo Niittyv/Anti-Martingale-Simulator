@@ -6,7 +6,7 @@ The simulator is specifically designed to test the risk parameters of anti-marti
 
 ### Data analytics
 
-The simulator comes with data analytics tools to help you gain deeper insight of your trading system's risk parameters. The program generates a simple HTML analysis report but you can use the analysis.ipynb notebook for more indepth analysis. Use this link to see the analysis.ipynb notebook with outputs:
+The simulator comes with data analytics tools to help you gain deeper insight of your trading system's risk parameters. The program generates a simple HTML analysis report but you can use the analysis.ipynb notebook for more indepth analysis.
 
 https://nbviewer.org/github/Niittyv/Anti-Martingale-Simulator/blob/main/analysis.ipynb
 
