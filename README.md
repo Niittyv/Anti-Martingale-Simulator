@@ -2,7 +2,7 @@
 
 With this simulator you can test your trading system's risk parameters with arbitary number of randomly generated trades and test cycles. The result statistics of test cycles are aggregated into a csv-file. The user has the option to output the list of trades from test cycles into csv-files.
 
-The simulator comes with data analytics tool to help you gain deeper insight of your trading system's risk parameters.
+The simulator comes with data analytics tools to help you gain deeper insight of your trading system's risk parameters. The program generates a simple HTML analysis report but you can use the analysis.ipynb notebook for more indepth analysis.
 
 The simulator is specifically designed to test the risk parameters of anti-martingale systems but regular risk management systems without compounding can also be tested.
 
@@ -15,6 +15,11 @@ The simulator is specifically designed to test the risk parameters of anti-marti
 <strong>runner up</strong> (hops-1): when the winstreak ends right before chicken dinner is achieved.
 
 ### Example configuration
+
+Run the following command on cmd:
+```
+Python main.py
+```
 
 enable anti-martingale? (y/n) - y
 - if enabled, the risk will be compounded after each successive winning trade. If disabled, the risk will stay constant.
@@ -51,3 +56,6 @@ name for test cycle csv-files? (leave blank for 'test_cycle#.csv -
   
 name for result csv? (leave blank for 'results.csv') -
 - leave blank for default naming
+
+want to generate html-report? (y/n) - y
+- generates an analysis of result.csv in a HTML-file format
