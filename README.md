@@ -5,6 +5,7 @@ With this simulator you can test your trading system's risk parameters with arbi
 The simulator is specifically designed to test the risk parameters of anti-martingale systems but regular risk management systems without compounding can also be tested.
 
 Screenshot of a result csv:
+
 ![kuva](https://github.com/user-attachments/assets/41028b5e-3bb2-4a7c-be3b-63f3e3a243bc)
 
 
