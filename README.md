@@ -4,7 +4,7 @@ With this simulator you can test your trading system's risk parameters with arbi
 
 The simulator is specifically designed to test the risk parameters of anti-martingale systems but regular risk management systems without compounding can also be tested.
 
-Screenshot of a result csv containing statistics of each test cycle:
+Screenshot of a result csv containing statistics of test cycles:
 
 ![kuva](https://github.com/user-attachments/assets/41028b5e-3bb2-4a7c-be3b-63f3e3a243bc)
 
@@ -24,12 +24,25 @@ https://nbviewer.org/github/Niittyv/Anti-Martingale-Simulator/blob/main/analysis
 
 <strong>runner up</strong> (hops-1): when the winstreak ends right before chicken dinner is achieved.
 
-### Example configuration
+### Configuration
+
+The script will create 4 files:
+
+-results.csv
+
+-results_metadata.csv
+
+-test_cycle.csv (optional, multiple files)
+
+-report.html (optional)
+
 
 Run the following command on cmd:
 ```
 Python main.py
 ```
+
+#### Example inputs
 
 enable anti-martingale? (y/n) - y
 - if enabled, the risk will be compounded after each successive winning trade. If disabled, the risk will stay constant.
@@ -61,7 +74,7 @@ how many trades per test cycle? - 100
 enable gathering of individual test cycles as csv-files? (y/n) - n
 - if enabled, simulated trades for each test cycle will be written into csv-files. <strong>Be careful, if the number of test cycles is really high and this option is enabled, there will be a csv-file saved in your filesystem for each test cycle.</strong>
 
-name for test cycle csv-files? (leave blank for 'test_cycle#.csv -
+name for test cycle csv-files? (leave blank for 'test_cycle#.csv) -
 - leave blank for default naming
   
 name for result csv? (leave blank for 'results.csv') -
