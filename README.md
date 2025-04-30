@@ -32,7 +32,6 @@ The script will generate 4 files:
 
 -report.html (optional)
 
----------------------------------
 To use the script, run following command on cmd:
 ```
 Python main.py
