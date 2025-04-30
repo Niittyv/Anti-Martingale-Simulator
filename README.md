@@ -22,7 +22,7 @@ https://nbviewer.org/github/Niittyv/Anti-Martingale-Simulator/blob/main/analysis
 
 ### Configuration
 
-Run the following command on cmd:
+Run the following command in cmd/terminal:
 ```
 Python main.py
 ```
