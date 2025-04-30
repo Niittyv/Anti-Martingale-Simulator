@@ -22,7 +22,7 @@ https://nbviewer.org/github/Niittyv/Anti-Martingale-Simulator/blob/main/analysis
 
 ### Configuration
 
-The script will create 4 files:
+The script will generate 4 files:
 
 -results.csv
 
