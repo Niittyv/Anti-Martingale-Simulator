@@ -82,3 +82,8 @@ name for result csv? (leave blank for 'results.csv') -
 
 want to generate html-report? (y/n) - y
 - generates an analysis report of result.csv in a HTML-file format
+  
+-------------------------------------------------------------------
+Screenshot of a result csv containing statistics of test cycles:
+
+![kuva](https://github.com/user-attachments/assets/41028b5e-3bb2-4a7c-be3b-63f3e3a243bc)
