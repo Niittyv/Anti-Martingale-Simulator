@@ -22,6 +22,11 @@ https://nbviewer.org/github/Niittyv/Anti-Martingale-Simulator/blob/main/analysis
 
 ### Configuration
 
+Run the following command on cmd:
+```
+Python main.py
+```
+
 The script will generate 4 files:
 
   * results.csv
@@ -31,11 +36,6 @@ The script will generate 4 files:
   * test_cycle.csv (optional, multiple files)
 
   * report.html (optional)
-
-Run the following command on cmd:
-```
-Python main.py
-```
 
 #### Example inputs
 
