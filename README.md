@@ -24,13 +24,13 @@ https://nbviewer.org/github/Niittyv/Anti-Martingale-Simulator/blob/main/analysis
 
 The script will generate 4 files:
 
-  -results.csv
+  * results.csv
 
-  -results_metadata.csv
+  * results_metadata.csv
 
-  -test_cycle.csv (optional, multiple files)
+  * test_cycle.csv (optional, multiple files)
 
-  -report.html (optional)
+  * report.html (optional)
 
 To use the script, run following command on cmd:
 ```
